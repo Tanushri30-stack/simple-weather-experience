@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | HTML5 Weather Experience</title>
+    <meta name="description" content="A premium HTML5 Weather application showcasing Geolocation, Web Speech API, and Canvas graphics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HTML5 Canvas for dynamic weather background effects -->
+    <canvas id="weatherCanvas"></canvas>
+
+    <div class="app-wrapper">
+        <header class="glass-panel main-header">
+            <h1>Aura Weather</h1>
+            
+            <form id="searchForm" class="search-form" onsubmit="event.preventDefault();">
+                <div class="input-group">
+                    <input type="text" id="cityInput" placeholder="Search for a city..." required autocomplete="off" list="recentCities">
+                    <!-- HTML5 Datalist for local storage suggestions -->
+                    <datalist id="recentCities"></datalist>
+                    <button type="submit" class="icon-btn" aria-label="Search">🔍</button>
+                    <button type="button" id="geoBtn" class="icon-btn" aria-label="Use Current Location" title="HTML5 Geolocation API">📍</button>
+                </div>
+            </form>
+        </header>
+
+        <main id="weatherContent" class="hidden">
+            <article class="glass-panel current-weather">
+                <header class="location-header">
+                    <h2 id="cityName">Loading...</h2>
+                    <p id="dateString" class="date-text"></p>
+                </header>
+
+                <div class="weather-main-data">
+                    <div class="temp-display">
+                        <span id="temperature">--</span><span class="unit">°C</span>
+                    </div>
+                    <div class="condition-display">
+                        <div id="weatherIcon" class="weather-emoji">☀️</div>
+                        <p id="weatherCondition">--</p>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <!-- HTML5 Web Speech API trigger -->
+                    <button id="speakBtn" class="btn primary-btn" title="Uses HTML5 Web Speech API">
+                        🔊 Read Forecast Out Loud
+                    </button>
+                </div>
+            </article>
+
+            <aside class="glass-panel weather-details">
+                <h3>Details</h3>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="label">Wind Speed</span>
+                        <span id="windSpeed" class="value">-- km/h</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Wind Direction</span>
+                        <span id="windDir" class="value">--°</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Time (Local)</span>
+                        <span id="localTime" class="value">--:--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Time (IST)</span>
+                        <span id="istTime" class="value">--:--</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        
+        <div id="loadingState" class="glass-panel loading-state">
+            <p>Awaiting input or geolocation data...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
